@@ -1,0 +1,17 @@
+root = "."
+
+[[urls]]
+pre = "https://raw.githubusercontent.com/arcticicestudio/nord-xresources/develop/src/"
+files = [
+    "nord"
+]
+post = ""
+dest = "."
+
+[[urls]]
+pre = "https://raw.githubusercontent.com/arcticicestudio/nord-alacritty/develop/src/"
+files = [
+    "nord"
+]
+post = ".yml"
+dest = ".."
