@@ -1,2 +1,5 @@
-run:
-    nim compile -d:ssl --run src/plataea.nim
+compile:
+    nim compile -d:ssl src/plataea.nim
+
+install:
+    nimble install -d:ssl
