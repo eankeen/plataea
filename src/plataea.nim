@@ -1,34 +1,25 @@
-import os
 import system
-import httpclient
 import parsetoml
-import strformat
+# import posix
 
-var toml: TomlValueRef = nil
-try:
-    toml = parsetoml.parseFile("plataea.toml")
-except IOError as err:
-    echo "Could not open file plataea.toml. Exiting"
+import util
+
+# umask(0o022)
+
+let toml = getToml()
+var root: string = ""
+if "root" in toml:
+    root = toml["root"].getStr()
+else:
+    root = "."
+if not ("sources" in toml):
+    echo "Must have at least one [[sources]] entry in toml file. Exiting"
     quit(1)
 
-let client = newHttpClient()
-
-let root = toml["root"].getStr()
-for _, endpoint in toml["urls"].getElems():
-    for _, file in endpoint["files"].getElems():
-        var pre = endpoint["pre"]
-        var post = endpoint["post"]
-        var url = &"{pre}{file}{post}"
-        let content = client.getContent(url)
-
-        var dest = endpoint["dest"].getStr()
-        var destPost = endpoint["destPost"].getStr()
-
-        let destFile = joinPath(getCurrentDir(), root, dest, &"{file}{destPost}")
-        # try:
-        writeFile(destFile, content)
-        # except IOError as err:
-        #     echo "Could not wrie the file. Aborting"
-        #     echo err
-        #     quit(1)
-        echo destFile
+for _, source in toml["sources"].getElems():
+    if "file" in source:
+        fetchSingleFile(source, root)
+    elif "files" in source:
+        fetchMultipleFiles(source, root)
+    else:
+        echo "A [[sources]] entry in your config doesn't have either a 'file' or 'files' property. It's being skipped"

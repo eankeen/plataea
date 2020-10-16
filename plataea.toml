@@ -1,17 +1,12 @@
-root = "."
+root = "./testdata"
 
-[[urls]]
-pre = "https://raw.githubusercontent.com/arcticicestudio/nord-xresources/develop/src/"
-files = [
-    "nord"
-]
-post = ""
-dest = "."
+[[sources]]
+file = "https://raw.githubusercontent.com/eankeen/eankeen/main/readme.md"
+destFile = "one"
 
-[[urls]]
-pre = "https://raw.githubusercontent.com/arcticicestudio/nord-alacritty/develop/src/"
-files = [
-    "nord"
-]
-post = ".yml"
-dest = ".."
+[[sources]]
+prefix = "https://raw.githubusercontent.com/eankeen/deno-babel/dev/"
+files = [".gitattributes", ".gitignore", ".gitmodules"]
+postfix = ""
+destPrefix = "more"
+destPostfix = ""

@@ -11,7 +11,7 @@ requires "nim >= 1.2.6"
 requires "parsetoml >= 0.5.0"
 
 task tests, "Run all tests":
-  exec "testament all"
+  exec "testament cat ."
 
 task test, "Run the Nimble tester!":
   withDir "tests":
