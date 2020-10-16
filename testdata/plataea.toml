@@ -1,4 +1,4 @@
-root = "./testdata"
+root = "."
 
 [[sources]]
 file = "https://raw.githubusercontent.com/eankeen/eankeen/main/readme.md"
