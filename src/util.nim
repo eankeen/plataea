@@ -6,7 +6,7 @@ import strformat
 
 # ensure ensures a specific property is in a table
 # note that this only works for string type properties
-proc ensureGet(table: TomlValueRef, property: string): string =
+proc ensureGet*(table: TomlValueRef, property: string): string =
     if not (property in table):
         echo &"Must specify '{property}'. Exiting"
         quit(1)
